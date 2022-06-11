@@ -1,0 +1,1 @@
+Site feito em Django e é responsável pela inscrição dos participantes do evento Cuscuz HQ e também realizar sorteios no evento. O sistema web utiliza Django REST Framework para prover REST APIs a serem consumidas por aplicações terceiras

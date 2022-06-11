@@ -1,0 +1,25 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simple MOOC - Uma simples plataforma de ensino a distância" />
+    <title>Cuscuz HQ</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+</head>
+<body>
+<div class="header">
+    <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
+    </div>
+</div>
+<div class="content">
+    {% block content %}{% endblock %}
+    <div class="footer">
+       Cuscuz HQ ©2022
+    </div>
+</div>
+<script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+</body>
+</html>
