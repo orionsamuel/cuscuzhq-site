@@ -11,11 +11,16 @@ def sorteio(request, edicao):
         id_participantes = []
         for participante in participantes:
             id_participantes.append(participante.id)
-        id_sorteado = random.choice(id_participantes)
-        participante_sorteado = Inscritos.objects.get(pk=id_sorteado)
-        context['success'] = True
-        context['sorteado'] = participante_sorteado.nome
-        telefone = '****' + participante_sorteado.telefone[-4:]
-        context['telefone'] = telefone
+        if len(id_participantes) > 0:
+            id_sorteado = random.choice(id_participantes)
+            participante_sorteado = Inscritos.objects.get(pk=id_sorteado)
+            participante_sorteado.sorteado = True
+            participante_sorteado.save()
+            context['success'] = True
+            context['sorteado'] = participante_sorteado.nome
+            telefone = '****' + participante_sorteado.telefone[-4:]
+            context['telefone'] = telefone
+        else:
+            context['sucess'] = False
     return render(request, 'sorteio.html', context)
         
