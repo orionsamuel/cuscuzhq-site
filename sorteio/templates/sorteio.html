@@ -3,10 +3,14 @@
 {% block content %}
 <form align='center' class="pure-form pure-form-stacked" method="post">
     {% csrf_token %}
-    {% if success %}
-        <h1>{{ sorteado }} {{ telefone }}</h1>
+    {% if get %}
+    <h1></h1>
     {% else %}
-        <h1>Não tem mais ninguém para sortear</h1>
+        {% if success %}
+            <h1>{{ sorteado }} {{ telefone }}</h1>
+        {% else %}
+            <h1>Não tem mais ninguém para sortear</h1>
+        {% endif %}
     {% endif %}
     <div class="pure-controls">
         <button type="submit" class="pure-button pure-button-primary">Sortear</button>

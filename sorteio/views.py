@@ -6,6 +6,7 @@ import random
 def sorteio(request, edicao):
     context = {}
     if request.method == 'POST':
+        context['get'] = False
         participantes = Inscritos.objects.filter(edicao__numero=edicao, 
                         presente=True, sorteado=False)
         id_participantes = []
@@ -22,5 +23,13 @@ def sorteio(request, edicao):
             context['telefone'] = telefone
         else:
             context['sucess'] = False
+    else:
+        participantes = Inscritos.objects.filter(edicao__numero=edicao, 
+                        presente=True, sorteado=False)
+        id_participantes = []
+        for participante in participantes:
+            id_participantes.append(participante.id)
+        if len(id_participantes) == 0:
+            context['get'] = True
     return render(request, 'sorteio.html', context)
         
