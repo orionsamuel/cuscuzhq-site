@@ -19,7 +19,7 @@ def sorteio(request, edicao):
             participante_sorteado.save()
             context['success'] = True
             context['sorteado'] = participante_sorteado.nome
-            telefone = '****' + participante_sorteado.telefone[-4:]
+            telefone = '*****' + participante_sorteado.telefone[-4:]
             context['telefone'] = telefone
         else:
             context['sucess'] = False
