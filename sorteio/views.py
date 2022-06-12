@@ -24,12 +24,6 @@ def sorteio(request, edicao):
         else:
             context['sucess'] = False
     else:
-        participantes = Inscritos.objects.filter(edicao__numero=edicao, 
-                        presente=True, sorteado=False)
-        id_participantes = []
-        for participante in participantes:
-            id_participantes.append(participante.id)
-        if len(id_participantes) == 0:
-            context['get'] = True
+        context['get'] = True
     return render(request, 'sorteio.html', context)
         
