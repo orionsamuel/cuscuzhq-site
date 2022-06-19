@@ -2,6 +2,7 @@
 {% load bootstrap %}
 
 {% block content %}
+<h1 align='center'> Inscrição do {{ edition }}º Cuscuz HQ</h1>
 <form align='left' class="col-4 m-auto pt-3 pb-2 text-left" method="post">
     {% csrf_token %}
     {% if success %}
@@ -10,13 +11,6 @@
     <fieldset>
         {{ form.non_field_errors }}
         {{ form|bootstrap }}
-        {% comment %} {% for field in form %}
-        <div align='center' class="form-label">
-            {{ field.label_tag }}
-            {{ field }}
-            {{ field.errors }}
-        </div>
-        {% endfor %} {% endcomment %}
         <div align='center'  class="form-label">
             <button type="submit" class="btn btn-primary mt-4">Cadastrar Inscrição</button>
         </div>

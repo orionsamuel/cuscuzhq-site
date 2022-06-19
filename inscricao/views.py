@@ -22,6 +22,7 @@ def Inscricao(request):
             context['success'] = True
     form = InscritosForm()
     context['form'] = form
+    context['edition'] = Edicao.objects.last().numero
     return render(request, 'inscricao.html', context) 
 
 class Participantes(APIView):
