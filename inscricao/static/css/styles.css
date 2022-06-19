@@ -6,6 +6,7 @@
 body {
     margin: 0 auto;
     line-height: 1.7em;
+    background-color: #fff47d;
 }
 a {
     color: #3b8bba;
@@ -21,7 +22,7 @@ a {
 }
 .header .pure-menu {
     padding: 0.5em;
-    background-color: #2d3e50;
+    background-color: #dbbf5c;
 }
 .header .pure-menu a {
     color: #fff;

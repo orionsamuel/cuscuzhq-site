@@ -1,22 +1,24 @@
 {% extends "base.html" %}
+{% load bootstrap %}
 
 {% block content %}
-<form align='center' class="pure-form pure-form-stacked" method="post">
+<form align='left' class="col-4 m-auto pt-3 pb-2 text-left" method="post">
     {% csrf_token %}
     {% if success %}
     <p>Inscrição realizada com sucesso</p>
     {% endif %}
     <fieldset>
         {{ form.non_field_errors }}
-        {% for field in form %}
-        <div align='center' class="pure-control-group">
+        {{ form|bootstrap }}
+        {% comment %} {% for field in form %}
+        <div align='center' class="form-label">
             {{ field.label_tag }}
             {{ field }}
             {{ field.errors }}
         </div>
-        {% endfor %}
-        <div class="pure-controls">
-            <button type="submit" class="pure-button pure-button-primary">Cadastrar Inscrição</button>
+        {% endfor %} {% endcomment %}
+        <div align='center'  class="form-label">
+            <button type="submit" class="btn btn-primary mt-4">Cadastrar Inscrição</button>
         </div>
     </fieldset>
 </form>

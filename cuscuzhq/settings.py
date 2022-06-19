@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'sorteio',
     # libs
     'rest_framework',
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [
