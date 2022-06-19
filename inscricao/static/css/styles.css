@@ -22,7 +22,7 @@ a {
 }
 .header .pure-menu {
     padding: 0.5em;
-    background-color: #dbbf5c;
+    background-color: #2a2829;
 }
 .header .pure-menu a {
     color: #fff;
@@ -168,7 +168,7 @@ form.pure-form-aligned ul.errorlist li {
 
 a.pure-button-primary {
     background: white;
-    color: #1f8dd6;
+    color: #e30212;
     border-radius: 5px;
     font-size: 120%;
 }
