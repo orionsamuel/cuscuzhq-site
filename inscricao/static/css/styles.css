@@ -159,8 +159,8 @@ form.pure-form-aligned ul.errorlist li {
 .pure-form .pure-control-group {
     margin-bottom: 1em;
 }
-.pure-button {
-    background-color: #1f8dd6;
+.btn-primary{
+    background-color: #2a2829;
     color: white;
     padding: 0.5em 2em;
     border-radius: 5px;
@@ -168,7 +168,7 @@ form.pure-form-aligned ul.errorlist li {
 
 a.pure-button-primary {
     background: white;
-    color: #e30212;
+    color: #1f8dd6;
     border-radius: 5px;
     font-size: 120%;
 }
