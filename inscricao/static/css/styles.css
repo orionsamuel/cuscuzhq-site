@@ -12,8 +12,25 @@ a {
     color: #3b8bba;
 }
 .content {
-    padding-top: 2em;
+    padding-top: 6em;
+    z-index: 1;
 }
+
+.bg-body {
+    background-image: url(../img/logo.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 65%;
+    background-position: center;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.3; 
+}
+
 .l-box {
     padding: 1em;
 }
@@ -158,6 +175,12 @@ form.pure-form-aligned ul.errorlist li {
 }
 .pure-form .pure-control-group {
     margin-bottom: 1em;
+}
+.btn-primary{
+    background-color: #e30112;
+    color: white;
+    padding: 0.5em 2em;
+    border-radius: 5px;
 }
 
 a.pure-button-primary {
