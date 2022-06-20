@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 
 def Inscricao(request):
@@ -61,10 +61,25 @@ class ParticipantesDetalhados(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, edicao, pk):
         inscritos = self.get_object(edicao, pk)
         inscritos.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@login_required(login_url='/admin/')
+def limparPresentes(request, edicao):
+    context = {}
+    presentes = Inscritos.objects.filter(edicao__numero=edicao, presente=True)
+    if request.method == 'POST':
+        context['get'] = False
+    else:
+        context['get'] = True
+        if len(presentes) > 0:
+            context['sucess'] = True
+            presentes.update(presente=False)
+    context['sucess'] = False
+    return render(request, 'zerar_participantes.html', context)
         
 

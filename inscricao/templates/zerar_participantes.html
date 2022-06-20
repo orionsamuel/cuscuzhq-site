@@ -8,13 +8,13 @@
         <h1></h1>
         {% else %}
             {% if success %}
-                <h1>{{ sorteado }} {{ telefone }}</h1>
+                <h1>Zerada a lista de participantes presentes</h1>
             {% else %}
-                <h1>Não tem mais ninguém para sortear</h1>
+                <h1>Não tem mais ninguém marcado como presente</h1>
             {% endif %}
         {% endif %}
         <div class="pure-controls">
-            <button type="submit" class="btn btn-primary mt-4">Sortear</button>
+            <button type="submit" class="btn btn-primary mt-4">Zerar Participantes</button>
         </div>
     </form>
 </div>
