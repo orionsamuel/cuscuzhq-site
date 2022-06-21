@@ -10,5 +10,5 @@ class InscritosSerializers(serializers.ModelSerializer):
 class CospobreSerializers(serializers.ModelSerializer):
     class Meta:
         model = Cospobre
-        fields = ['id', 'nome', 'telefone', 'email', 'edicao', 'imagem', 'som', 
+        fields = ['id', 'nome', 'telefone', 'email', 'personagem', 'edicao', 'imagem', 'som', 
                 'nota_1', 'nota_2', 'nota_3']
