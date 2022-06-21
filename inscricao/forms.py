@@ -11,4 +11,4 @@ class InscritosForm(ModelForm):
 class CospobreForm(ModelForm):
     class Meta:
         model = Cospobre
-        fields = ['nome', 'telefone', 'email', 'imagem', 'som']
+        fields = ['nome', 'telefone', 'email', 'personagem', 'imagem', 'som']

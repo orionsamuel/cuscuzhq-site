@@ -34,7 +34,7 @@ def InscricaoCospobre(request):
             serializer.save(edicao=Edicao.objects.last())
             redirect('cospobre.html')
             context['success'] = True
-    form = InscritosForm()
+    form = CospobreForm()
     context['form'] = form
     context['edition'] = Edicao.objects.last().numero
     return render(request, 'cospobre.html', context)

@@ -6,7 +6,7 @@ class InscritosAdmin(admin.ModelAdmin):
     search_fields = ['nome', 'edicao']
 
 class CospobreAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'telefone', 'email', 'edicao', 'imagem', 'som', 
+    list_display = ['nome', 'telefone', 'email', 'personagem', 'edicao', 'imagem', 'som', 
                     'nota_1', 'nota_2', 'nota_3']
     search_fields = ['nome', 'edicao']
 

@@ -27,6 +27,7 @@ class Cospobre(models.Model):
     nome = models.CharField(max_length=150)
     telefone = models.CharField(max_length=20)
     email = models.CharField(max_length=150)
+    personagem = models.CharField(max_length=150, null=True)
     edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
     imagem = models.ImageField(upload_to='cospobre/images', verbose_name='Imagem', null=True)
     som = models.FileField(upload_to="cospobre/sounds", verbose_name='Musica', null=True, blank=True)
@@ -40,4 +41,4 @@ class Cospobre(models.Model):
     class Meta:
         verbose_name = "Cospobre"
         verbose_name_plural = 'Cospobres'
-        ordering = ['nome', 'edicao']
+        ordering = ['nome', 'personagem', 'edicao']
