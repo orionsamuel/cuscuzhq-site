@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+{% block content %}
+<div class="form col-10 col-sm-10 col-md-6 col-lg-6">
+    <h1 align='center'> Concurso de Cospobre - Cuscuz HQ</h1>
+    <form align='left' class="col-8 m-auto pt-3 pb-2 text-left" method="post">
+        {% csrf_token %}
+        {% if success %}
+        <p class="alert alert-success">Inscrição realizada com sucesso</p>
+        {% endif %}
+        <fieldset>
+            {{ form.non_field_errors }}
+            {{ form|bootstrap }}
+            <div align='center'  class="form-label">
+                <button type="submit" class="btn btn-primary mt-4">Cadastrar Inscrição</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

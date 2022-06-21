@@ -1,6 +1,6 @@
-from inscricao.models import Edicao, Inscritos
-from inscricao.forms import InscritosForm
-from inscricao.serializers import InscritosSerializers
+from inscricao.models import Edicao, Inscritos, Cospobre
+from inscricao.forms import InscritosForm, CospobreForm
+from inscricao.serializers import InscritosSerializers, CospobreSerializers
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -23,7 +23,21 @@ def Inscricao(request):
     form = InscritosForm()
     context['form'] = form
     context['edition'] = Edicao.objects.last().numero
-    return render(request, 'inscricao.html', context) 
+    return render(request, 'inscricao.html', context)
+
+def InscricaoCospobre(request): 
+    context = {}
+    if request.method == 'POST':
+        form = CospobreForm(request.POST or None)
+        serializer = CospobreSerializers(data=request.POST)
+        if serializer.is_valid():
+            serializer.save(edicao=Edicao.objects.last())
+            redirect('cospobre.html')
+            context['success'] = True
+    form = InscritosForm()
+    context['form'] = form
+    context['edition'] = Edicao.objects.last().numero
+    return render(request, 'cospobre.html', context)
 
 class Participantes(APIView):
     def get(self, request, edicao):
