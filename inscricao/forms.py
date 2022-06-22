@@ -1,4 +1,3 @@
-from attr import field
 from inscricao.models import Inscritos, Cospobre
 
 from django.forms import ModelForm
