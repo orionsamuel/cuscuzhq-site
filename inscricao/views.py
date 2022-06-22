@@ -28,10 +28,13 @@ def Inscricao(request):
 def InscricaoCospobre(request): 
     context = {}
     if request.method == 'POST':
-        form = CospobreForm(request.POST or None)
+        form = CospobreForm(request.POST or None, request.FILES)
         serializer = CospobreSerializers(data=request.POST)
         if serializer.is_valid():
-            serializer.save(edicao=Edicao.objects.last())
+            if 'som' in request.FILES:
+                serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'], som=request.FILES['som'])
+            else:
+                serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'])
             redirect('cospobre.html')
             context['success'] = True
     form = CospobreForm()

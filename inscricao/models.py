@@ -29,7 +29,7 @@ class Cospobre(models.Model):
     email = models.CharField(max_length=150)
     personagem = models.CharField(max_length=150, null=True)
     edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
-    imagem = models.ImageField(upload_to='cospobre/images', verbose_name='Imagem', null=True)
+    imagem = models.ImageField(upload_to='cospobre/images', verbose_name='Imagem', null=True, blank=False)
     som = models.FileField(upload_to="cospobre/sounds", verbose_name='Musica', null=True, blank=True)
     nota_1 = models.IntegerField(null=True, default=0)
     nota_2 = models.IntegerField(null=True, default=0)
