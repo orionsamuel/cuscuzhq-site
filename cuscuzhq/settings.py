@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # libs
     'rest_framework',
     'bootstrapform',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8100",
+    "http://localhost:8200",
+    "http://127.0.0.1:9000",
 ]
 
 ROOT_URLCONF = 'cuscuzhq.urls'
