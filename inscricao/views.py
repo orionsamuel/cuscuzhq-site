@@ -1,4 +1,3 @@
-from yaml import serialize
 from inscricao.models import Edicao, Inscritos, Cospobre
 from inscricao.forms import InscritosForm, CospobreForm
 from inscricao.serializers import InscritosSerializers, CospobreSerializers
