@@ -1,3 +1,4 @@
+from yaml import serialize
 from inscricao.models import Edicao, Inscritos, Cospobre
 from inscricao.forms import InscritosForm, CospobreForm
 from inscricao.serializers import InscritosSerializers, CospobreSerializers
@@ -40,6 +41,12 @@ def InscricaoCospobre(request):
     context['form'] = form
     context['edition'] = Edicao.objects.last().numero
     return render(request, 'cospobre.html', context)
+
+class BuscarParticipante(APIView):
+    def get(self, request, edicao, busca):
+        inscritos = Inscritos.objects.filter(nome__icontains=busca, edicao__numero=edicao)
+        serializer = InscritosSerializers(inscritos, many=True)
+        return Response(serializer.data)
 
 class Participantes(APIView):
     def get(self, request, edicao):
