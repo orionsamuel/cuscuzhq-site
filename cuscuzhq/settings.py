@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'sorteio',
     # libs
     'rest_framework',
-    'bootstrapform',
     'corsheaders',
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [
@@ -59,12 +59,10 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8100",
-    "http://localhost:8200",
-    "http://127.0.0.1:9000",
+    'http://localhost:8100',
 ]
+
 
 ROOT_URLCONF = 'cuscuzhq.urls'
 
