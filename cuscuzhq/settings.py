@@ -162,9 +162,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'cuscuzhq', 'media')
 MEDIA_URL = '/media/'
 django_heroku.settings(locals())
+
+AWS_ACCESS_KEY_ID = 'AKIAWPCAMNX6XFATY2X2'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'cuscuzhq'
+
+AWS_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
