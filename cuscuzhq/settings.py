@@ -167,8 +167,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'cuscuzhq', 'media')
 MEDIA_URL = '/media/'
 django_heroku.settings(locals())
 
-AWS_ACCESS_KEY_ID = 'AKIAWPCAMNX6XFATY2X2'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
 AWS_STORAGE_BUCKET_NAME = 'cuscuzhq'
 
 AWS_FILE_OVERWRITE = False
