@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+
+{% block content %}
+<div class="form col-10 col-sm-10 col-md-6 col-lg-6">
+    <h1 align='center'>Travessa dos Artistas</br>
+    {{ edition }}º Cuscuz HQ</h1>
+    <form align='left' class="col-8 m-auto pt-3 pb-2 text-left" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if success %}
+        <p class="alert alert-success">Inscrição realizada com sucesso</p>
+        {% endif %}
+        {{ form.non_field_errors }}
+        <fieldset>
+            <div class="form-group">
+                {{form.nome.erros}}
+                <label for="nome" class="control-label">Nome</label>
+                <div class=" ">
+                    <input type="text" name="nome" maxlength="150" class="form-control" required id="id_nome">
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.telefone.erros}}
+                <label for="telefone" class="control-label">Telefone (WhatsApp)</label>
+                <div class=" ">
+                    <input type="text" name="telefone" maxlength="20" class="form-control" required id="id_telefone">
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.email.erros}}
+                <label for="email" class="control-label">E-mail</label>
+                <div class=" ">
+                    <input type="text" name="email" maxlength="150" class="form-control" required id="id_email">
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.experiencia.erros}}
+                <label for="experiencia" class="control-label">Experiência Artistíca (em meses)</label>
+                <div class=" ">
+                    <input type="number" name="experiencia" class="form-control" required id="id_experiencia">
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.obrasPublicadas.erros}}
+                <label for="obrasPublicadas" class="control-label">Quantidade de Obras Publicadas</label>
+                <div class=" ">
+                    <input type="number" name="obrasPublicadas" class="form-control" required id="id_obrasPublicadas">
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.obrasFuturas.erros}}
+                <label for="obrasFuturas" class="control-label">Obras Lançadas Até a Data do Evento</label>
+                <label for="obrasFuturas" class="control-label">Incluir Título</label>
+                <div class=" ">
+                    <textarea name="obrasFuturas" cols="40" rows="10" maxlength="400" class="form-control" required id="id_obrasFuturas"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.instagram.erros}}
+                <label for="instagram" class="control-label">Instagram</label>
+                <div class=" ">
+                    <input type="text" name="instagram" maxlength="200" class="form-control" id="id_instagram">
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.facebook.erros}}
+                <label for="facebook" class="control-label">Facebook</label>
+                <div class=" ">
+                    <input type="text" name="facebook" maxlength="200" class="form-control" id="id_facebook">
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.devianart.erros}}
+                <label for="devianart" class="control-label">Devianart</label>
+                <div class=" ">
+                    <input type="text" name="devianart" maxlength="200" class="form-control" id="id_devianart">
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.blog.erros}}
+                <label for="blog" class="control-label">Blog</label>
+                <div class=" ">
+                    <input type="text" name="blog" maxlength="200" class="form-control" id="id_blog">
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.outraRedeSocial.erros}}
+                <label for="outraRedeSocial" class="control-label">Outra Rede Social</label>
+                <div class=" ">
+                    <input type="text" name="outraRedeSocial" maxlength="200" class="form-control" id="id_outraRedeSocial">
+                </div>
+            </div>
+            <div class="form-group">
+                {{form.arquivos.erros}}
+                <label for="arquivos" class="control-label">Trabalhos Já Feitos (limitado a 100Mb)</label>
+                <div class=" ">
+                    <input type="file" name="arquivos" id="id_arquivos">
+                </div>
+            </div>
+            <div align='center'  class="form-label">
+                <button type="submit" class="btn btn-primary mt-4">Cadastrar Inscrição</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

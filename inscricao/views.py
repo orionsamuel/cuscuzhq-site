@@ -1,5 +1,5 @@
-from inscricao.models import Edicao, Inscritos, Cospobre
-from inscricao.forms import InscritosForm, CospobreForm
+from inscricao.models import Edicao, Inscritos, Cospobre, Artistas
+from inscricao.forms import InscritosForm, CospobreForm, ArtistaForm
 from inscricao.serializers import InscritosSerializers, CospobreSerializers
 
 from rest_framework.views import APIView
@@ -40,6 +40,21 @@ def InscricaoCospobre(request):
     context['form'] = form
     context['edition'] = Edicao.objects.last().numero
     return render(request, 'cospobre.html', context)
+
+def InscricaoArtista(request): 
+    context = {}
+    if request.method == 'POST':
+        form = ArtistaForm(request.POST or None, request.FILES)
+        if form.is_valid():
+            artista = form.save(commit=False)
+            artista.edicao = edicao=Edicao.objects.last()
+            artista.save()
+            redirect('artistas.html')
+            context['success'] = True
+    form = ArtistaForm()
+    context['form'] = form
+    context['edition'] = Edicao.objects.last().numero
+    return render(request, 'artistas.html', context)
 
 class BuscarParticipante(APIView):
     def get(self, request, edicao, busca):

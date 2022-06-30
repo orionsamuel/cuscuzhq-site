@@ -9,6 +9,7 @@ body {
     margin: 0 auto;
     line-height: 1.0em;
     background-color: #fff47d;
+    height: 100%;
 }
 a {
     color: #3b8bba;
@@ -24,13 +25,13 @@ a {
     background-attachment: fixed;
     background-size: 55%;
     background-position: center;
-    position: absolute;
+    position: fixed;
     padding-top: 4;
     z-index: -1;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 0; 
     opacity: 0.3; 
 }
 
