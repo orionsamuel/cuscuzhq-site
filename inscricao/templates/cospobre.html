@@ -1,62 +1,75 @@
 {% extends "base.html" %}
 {% load bootstrap %}
+{% load static %}
 
 {% block content %}
-<div class="form col-10 col-sm-10 col-md-6 col-lg-6">
-    <h1 align='center'>Concurso de Cospobre</br>
-    {{ edition }}º Cuscuz HQ</h1>
-    <form align='left' class="col-8 m-auto pt-3 pb-2 text-left" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% if success %}
-        <p class="alert alert-success">Inscrição realizada com sucesso</p>
-        {% endif %}
-        <fieldset>
-            <div class="form-group">
-                {{form.nome.erros}}
-                <label for="nome" class="control-label">Nome</label>
-                <div class=" ">
-                    <input type="text" name="nome" maxlength="150" class="form-control" required id="id_nome">
+<div class="alinhamento">
+    <div class="form col-10 col-sm-10 col-md-6 col-lg-6">
+        <h1 align='center'>Concurso de Cospobre</br>
+        {{ edition }}º Cuscuz HQ</h1>
+        <form align='left' class="col-8 m-auto pt-3 pb-2 text-left" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if success %}
+            <p class="alert alert-success">Inscrição realizada com sucesso</p>
+            {% endif %}
+            <fieldset>
+                <div class="form-group">
+                    {{form.nome.erros}}
+                    <label for="nome" class="control-label">Nome</label>
+                    <div class=" ">
+                        <input type="text" name="nome" maxlength="150" class="form-control" required id="id_nome">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                {{form.telefone.erros}}
-                <label for="telefone" class="control-label">Telefone</label>
-                <div class=" ">
-                    <input type="text" name="telefone" maxlength="20" class="form-control" required id="id_telefone">
+                <div class="form-group">
+                    {{form.telefone.erros}}
+                    <label for="telefone" class="control-label">Telefone</label>
+                    <div class=" ">
+                        <input type="text" name="telefone" maxlength="20" class="form-control" required id="id_telefone">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                {{form.email.erros}}
-                <label for="email" class="control-label">E-mail</label>
-                <div class=" ">
-                    <input type="text" name="email" maxlength="150" class="form-control" required id="id_email">
+                <div class="form-group">
+                    {{form.email.erros}}
+                    <label for="email" class="control-label">E-mail</label>
+                    <div class=" ">
+                        <input type="text" name="email" maxlength="150" class="form-control" required id="id_email">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                {{form.personagem.erros}}
-                <label for="personagem" class="control-label">Personagem</label>
-                <div class=" ">
-                    <input type="text" name="personagem" maxlength="150" class="form-control" required id="id_personagem">
+                <div class="form-group">
+                    {{form.personagem.erros}}
+                    <label for="personagem" class="control-label">Personagem</label>
+                    <div class=" ">
+                        <input type="text" name="personagem" maxlength="150" class="form-control" required id="id_personagem">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                {{form.imagem.erros}}
-                <label for="imagem" class="control-label">Imagem</label>
-                <div class=" ">
-                    <input type="file" name="imagem" accept="imagem/*" required id="id_imagem">
+                <div class="form-group">
+                    {{form.imagem.erros}}
+                    <label for="imagem" class="control-label">Imagem</label>
+                    <div class=" ">
+                        <input type="file" name="imagem" accept="imagem/*" required id="id_imagem">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                {{form.som.erros}}
-                <label for="som" class="control-label">Música</label>
-                <div class=" ">
-                    <input type="file" name="som" id="id_som">
+                <div class="form-group">
+                    {{form.som.erros}}
+                    <label for="som" class="control-label">Música</label>
+                    <div class=" ">
+                        <input type="file" name="som" id="id_som">
+                    </div>
                 </div>
-            </div>
-            <div align='center'  class="form-label">
-                <button type="submit" class="btn btn-primary mt-4">Cadastrar Inscrição</button>
-            </div>
-        </fieldset>
-    </form>
+                <div align='center'  class="form-label">
+                    <button type="submit" class="btn btn-primary mt-4">Cadastrar Inscrição</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<div class="edital">
+    <div class="alinhamento2">
+        <a href="{% static 'documents/EDITAL_COSPOBRE_10º_Cuscuz_HQ.pdf' %}" download="Edital Cospobre 10º Cuscuz HQ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-file-earmark-arrow-down-fill" viewBox="0 0 16 16">
+                <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm-1 4v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 11.293V7.5a.5.5 0 0 1 1 0z"/>
+            </svg>
+        </a>
+        <h3>Edital</h3>
+    </div>
 </div>
 {% endblock %}
