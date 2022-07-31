@@ -8,7 +8,7 @@ def sorteio(request, edicao):
     if request.method == 'POST':
         context['get'] = False
         participantes = Inscritos.objects.filter(edicao__numero=edicao, 
-                        presente=True)
+                        presente=True, sorteado=False)
         id_participantes = []
         for participante in participantes:
             id_participantes.append(participante.id)
