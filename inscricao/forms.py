@@ -1,4 +1,4 @@
-from inscricao.models import Inscritos, Cospobre, Artistas
+from inscricao.models import Inscritos, Cospobre, Cosplay, Artistas
 
 from django.forms import ModelForm
 
@@ -10,7 +10,12 @@ class InscritosForm(ModelForm):
 class CospobreForm(ModelForm):
     class Meta:
         model = Cospobre
-        fields = ['nome', 'telefone', 'email', 'personagem', 'imagem', 'som']
+        fields = ['nome', 'telefone', 'email', 'personagem', 'imagem', 'som', 'direitoImagem']
+        
+class CosplayForm(ModelForm):
+    class Meta:
+        model = Cosplay
+        fields = ['nome', 'telefone', 'email', 'personagem', 'imagem', 'som', 'direitoImagem']
 
 class ArtistaForm(ModelForm):
     class Meta:

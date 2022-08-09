@@ -35,7 +35,8 @@ class Cospobre(models.Model):
     personagem = models.CharField(max_length=150, null=True)
     edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
     imagem = models.ImageField(upload_to='cospobre/images', verbose_name='Imagem', null=True, blank=False)
-    som = models.FileField(upload_to="cospobre/sounds", verbose_name='Musica', null=True, blank=True)
+    som = models.FileField(upload_to="cospobre/sounds", verbose_name='Musica', null=True, blank=False)
+    direitoImagem = models.BooleanField(default=False, null=True, blank=False)
     nota_1 = models.IntegerField(null=True, default=0)
     nota_2 = models.IntegerField(null=True, default=0)
     nota_3 = models.IntegerField(null=True, default=0)
@@ -46,6 +47,27 @@ class Cospobre(models.Model):
     class Meta:
         verbose_name = "Cospobre"
         verbose_name_plural = 'Cospobres'
+        ordering = ['nome', 'personagem', 'edicao']
+        
+class Cosplay(models.Model):
+    nome = models.CharField(max_length=150)
+    telefone = models.CharField(max_length=20)
+    email = models.CharField(max_length=150)
+    personagem = models.CharField(max_length=150, null=True)
+    edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
+    imagem = models.ImageField(upload_to='cosplay/images', verbose_name='Imagem', null=True, blank=False)
+    som = models.FileField(upload_to="cosplay/sounds", verbose_name='Musica', null=True, blank=False)
+    direitoImagem = models.BooleanField(default=False, null=True, blank=False)
+    nota_1 = models.IntegerField(null=True, default=0)
+    nota_2 = models.IntegerField(null=True, default=0)
+    nota_3 = models.IntegerField(null=True, default=0)
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name = "Cosplay"
+        verbose_name_plural = 'Cosplays'
         ordering = ['nome', 'personagem', 'edicao']
 
 class Artistas(models.Model):

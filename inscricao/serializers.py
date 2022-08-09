@@ -1,4 +1,4 @@
-from inscricao.models import Inscritos, Cospobre
+from inscricao.models import Inscritos, Cospobre, Cosplay
 
 from rest_framework import serializers
 
@@ -11,4 +11,10 @@ class CospobreSerializers(serializers.ModelSerializer):
     class Meta:
         model = Cospobre
         fields = ['id', 'nome', 'telefone', 'email', 'personagem', 'edicao', 'imagem', 'som', 
-                'nota_1', 'nota_2', 'nota_3']
+                'direitoImagem', 'nota_1', 'nota_2', 'nota_3']
+                
+class CosplaySerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Cosplay
+        fields = ['id', 'nome', 'telefone', 'email', 'personagem', 'edicao', 'imagem', 'som', 
+                'direitoImagem', 'nota_1', 'nota_2', 'nota_3']
