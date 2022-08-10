@@ -27,9 +27,4 @@ class Migration(migrations.Migration):
             name='cosplay',
             options={'ordering': ['nome', 'personagem', 'edicao'], 'verbose_name': 'Cosplay', 'verbose_name_plural': 'Cosplays'},
         ),
-        migrations.AlterField(
-            model_name='cosplay',
-            name='edicao',
-            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='inscricao.fliq'),
-        ),
     ]
