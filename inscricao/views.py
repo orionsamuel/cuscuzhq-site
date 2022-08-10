@@ -62,10 +62,14 @@ def InscricaoCosplay(request):
 def InscricaoArtista(request): 
     context = {}
     if request.method == 'POST':
+        print(request.POST)
         form = ArtistaForm(request.POST or None, request.FILES)
+        total = int(request.POST['experiencia']) * 1 + int(request.POST['obrasPublicadas']) * 50
         if form.is_valid():
             artista = form.save(commit=False)
             artista.edicao = edicao=Edicao.objects.last()
+            artista.total = total
+            artista.fliq = True
             artista.save()
             redirect('artistas.html')
             context['success'] = True

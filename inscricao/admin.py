@@ -17,7 +17,7 @@ class CosplayAdmin(admin.ModelAdmin):
 
 class ArtistasAdmin(admin.ModelAdmin):
     list_display = ['nome', 'telefone', 'email', 'experiencia', 'obrasPublicadas', 'obrasFuturas',
-                'instagram', 'facebook', 'devianart', 'blog', 'outraRedeSocial', 'arquivos']
+                'instagram', 'facebook', 'devianart', 'blog', 'outraRedeSocial', 'arquivos', 'total', 'fliq']
     search_fields = ['nome', 'edicao']
 
 class EdicaoAdmin(admin.ModelAdmin):

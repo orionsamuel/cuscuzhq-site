@@ -77,13 +77,15 @@ class Artistas(models.Model):
     edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
     experiencia = models.IntegerField()
     obrasPublicadas = models.IntegerField()
-    obrasFuturas = models.TextField(max_length=400)
+    obrasFuturas = models.TextField(max_length=400, blank=True)
     instagram = models.CharField(max_length=200, blank=True)
     facebook = models.CharField(max_length=200, blank=True)
     devianart = models.CharField(max_length=200, blank=True)
     blog = models.CharField(max_length=200, blank=True)
     outraRedeSocial = models.CharField(max_length=200, blank=True)
     arquivos = models.FileField(upload_to="artistas/files", verbose_name='Arquivos', null=True, blank=True)
+    fliq = models.BooleanField(default=False, null=True, blank=False)
+    total = models.FloatField(null=True, default=0)
 
     def __str__(self):
         return self.nome
@@ -91,5 +93,5 @@ class Artistas(models.Model):
     class Meta:
         verbose_name = "Artista"
         verbose_name_plural = 'Artistas'
-        ordering = ['nome', 'edicao']
+        ordering = ['nome', 'edicao', 'fliq']
 
