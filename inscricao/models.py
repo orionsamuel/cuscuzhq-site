@@ -26,7 +26,7 @@ class Inscritos(models.Model):
     class Meta:
         verbose_name = "Participante"
         verbose_name_plural = 'Participantes'
-        ordering = ['nome', 'edicao']
+        ordering = ['edicao', 'nome']
 
 class Cospobre(models.Model):
     nome = models.CharField(max_length=150)
@@ -47,7 +47,7 @@ class Cospobre(models.Model):
     class Meta:
         verbose_name = "Cospobre"
         verbose_name_plural = 'Cospobres'
-        ordering = ['nome', 'personagem', 'edicao']
+        ordering = ['edicao', 'nome', 'personagem']
         
 class Cosplay(models.Model):
     nome = models.CharField(max_length=150)
@@ -68,7 +68,7 @@ class Cosplay(models.Model):
     class Meta:
         verbose_name = "Cosplay"
         verbose_name_plural = 'Cosplays'
-        ordering = ['nome', 'personagem', 'edicao']
+        ordering = ['edicao', 'nome', 'personagem']
 
 class Artistas(models.Model):
     nome = models.CharField(max_length=150)
@@ -93,5 +93,5 @@ class Artistas(models.Model):
     class Meta:
         verbose_name = "Artista"
         verbose_name_plural = 'Artistas'
-        ordering = ['nome', 'edicao', 'fliq']
+        ordering = ['edicao', 'fliq', 'nome']
 
