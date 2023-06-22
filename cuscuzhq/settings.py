@@ -26,7 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7*y4o%x#isv1)@4_(wj7*4kp-$&&d^=*0jl1io59_kcr1%j5$w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = 'False'
+
+ALLOWED_HOSTS = ['https://cuscuzhq.herokuapp.com/]
 
 # Application definition
 
@@ -190,6 +192,8 @@ AWS_STORAGE_BUCKET_NAME = 'bucketeer-e07f9cdb-fd7e-46f7-8649-98ab7e336444'
 AWS_FILE_OVERWRITE = True
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
