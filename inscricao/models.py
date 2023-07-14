@@ -40,6 +40,7 @@ class Cospobre(models.Model):
     nota_1 = models.IntegerField(null=True, default=0)
     nota_2 = models.IntegerField(null=True, default=0)
     nota_3 = models.IntegerField(null=True, default=0)
+    total_nota = models.IntegerField(null=True, default=0)
 
     def __str__(self):
         return self.nome
@@ -61,6 +62,7 @@ class Cosplay(models.Model):
     nota_1 = models.IntegerField(null=True, default=0)
     nota_2 = models.IntegerField(null=True, default=0)
     nota_3 = models.IntegerField(null=True, default=0)
+    total_nota = models.IntegerField(null=True, default=0)
 
     def __str__(self):
         return self.nome
