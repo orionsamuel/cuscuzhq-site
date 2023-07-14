@@ -1,7 +1,7 @@
 from inscricao.views import Inscricao, Participantes, ParticipantesDetalhados, BuscarParticipante
 from inscricao.views import limparPresentes, InscricaoCospobre, InscricaoCosplay, InscricaoArtista
-from inscricao.views import Cospobres, CospobreDetalhados, CospobreNotas, CospobreVencedores
-from inscricao.views import Cosplays, CosplayDetalhados, CosplayNotas, CosplayVencedores
+from inscricao.views import Cospobres, CospobreDetalhados, CospobreVencedores
+from inscricao.views import Cosplays, CosplayDetalhados, CosplayVencedores
 from inscricao.views import GetEdicao
 from django.urls import path
 
@@ -16,10 +16,8 @@ urlpatterns = [
     path('v1/participantes/<int:edicao>/<int:pk>/', ParticipantesDetalhados.as_view()),
     path('v1/cospobre/<int:edicao>/', Cospobres.as_view()),
     path('v1/cospobre/<int:edicao>/<int:pk>/', CospobreDetalhados.as_view()),
-    path('v1/cospobre/notas/<int:edicao>/<int:pk>/', CospobreNotas.as_view()),
     path('v1/cospobre/vencedores/<int:edicao>/', CospobreVencedores.as_view()),
     path('v1/cosplay/<int:edicao>/', Cosplays.as_view()),
-    path('v1/cosplay/notas/<int:edicao>/<int:pk>/', CosplayNotas.as_view()),
     path('v1/cosplay/vencedores/<int:edicao>/', CosplayVencedores.as_view()),
     path('v1/cosplay/<int:edicao>/<int:pk>/', CosplayDetalhados.as_view()),
     path('presentes/<int:edicao>/', limparPresentes),

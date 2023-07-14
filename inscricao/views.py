@@ -189,22 +189,13 @@ class CospobreDetalhados(APIView):
         participante.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class CospobreNotas(APIView):
-    def get_object(self, edicao, pk):
+class CospobreVencedores(APIView):
+    def get_object(self, edicao):
         try:
-            return Cospobre.objects.get(edicao__numero=edicao, pk=pk)
+            return Cospobre.objects.get(edicao__numero=edicao)
         except Cospobre.DoesNotExist:
             raise NotFound()
-    
-    def put(self, request, edicao, pk):
-        participante = self.get_object(edicao, pk)
-        serializer = CospobreSerializers(participante, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class CospobreVencedores(APIView):
     def get(self, request, edicao):
         participantes = Cospobre.objects.filter(edicao__numero=edicao).order_by('total_nota')
         serializer = CospobreSerializers(participantes, many=True)
@@ -235,30 +226,27 @@ class CosplayDetalhados(APIView):
         participante.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class CosplayNotas(APIView):
-    def get_object(self, edicao, pk):
-        try:
-            return Cospobre.objects.get(edicao__numero=edicao, pk=pk)
-        except Cospobre.DoesNotExist:
-            raise NotFound()
-    
-    def put(self, request, edicao, pk):
-        participante = self.get_object(edicao, pk)
-        serializer = CospobreSerializers(participante, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 class CosplayVencedores(APIView):
+    def get_object(self, edicao):
+        try:
+            return Cosplay.objects.get(edicao__numero=edicao)
+        except Cosplay.DoesNotExist:
+            raise NotFound()
+
     def get(self, request, edicao):
         participantes = Cosplay.objects.filter(edicao__numero=edicao).order_by('total_nota')
         serializer = CosplaySerializers(participantes, many=True)
         return Response(serializer.data)
 
 class GetEdicao(APIView):
+    def get_object(self):
+        try:
+            return Edicao.objects.get()
+        except Edicao.DoesNotExist:
+            raise NotFound()
+
     def get(self, request):
-        edicao = Edicao.objects.last().numero
+        edicao = Edicao.objects.last()
         serializer = EdicaoSerializers(edicao)
         return Response(serializer.data)
 
