@@ -37,10 +37,6 @@ class Cospobre(models.Model):
     imagem = models.ImageField(upload_to='cospobre/images', verbose_name='Imagem', null=True, blank=False)
     som = models.FileField(upload_to="cospobre/sounds", verbose_name='Musica', null=True, blank=False)
     direitoImagem = models.BooleanField(default=False, null=True, blank=False)
-    nota_1 = models.IntegerField(null=True, default=0)
-    nota_2 = models.IntegerField(null=True, default=0)
-    nota_3 = models.IntegerField(null=True, default=0)
-    total_nota = models.IntegerField(null=True, default=0)
 
     def __str__(self):
         return self.nome
@@ -59,6 +55,19 @@ class Cosplay(models.Model):
     imagem = models.ImageField(upload_to='cosplay/images', verbose_name='Imagem', null=True, blank=False)
     som = models.FileField(upload_to="cosplay/sounds", verbose_name='Musica', null=True, blank=False)
     direitoImagem = models.BooleanField(default=False, null=True, blank=False)
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name = "Cosplay"
+        verbose_name_plural = 'Cosplays'
+        ordering = ['edicao', 'nome', 'personagem']
+
+class NotasCospobre(models.Model):
+    nome = models.CharField(max_length=150)
+    personagem = models.CharField(max_length=150, null=True)
+    edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
     nota_1 = models.IntegerField(null=True, default=0)
     nota_2 = models.IntegerField(null=True, default=0)
     nota_3 = models.IntegerField(null=True, default=0)
@@ -68,9 +77,26 @@ class Cosplay(models.Model):
         return self.nome
 
     class Meta:
-        verbose_name = "Cosplay"
-        verbose_name_plural = 'Cosplays'
-        ordering = ['edicao', 'nome', 'personagem']
+        verbose_name = "Nota Cospobre"
+        verbose_name_plural = 'Notas Cospobres'
+        ordering = ['edicao', 'total_nota', 'nome', 'personagem']
+
+class NotasCosplay(models.Model):
+    nome = models.CharField(max_length=150)
+    personagem = models.CharField(max_length=150, null=True)
+    edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
+    nota_1 = models.IntegerField(null=True, default=0)
+    nota_2 = models.IntegerField(null=True, default=0)
+    nota_3 = models.IntegerField(null=True, default=0)
+    total_nota = models.IntegerField(null=True, default=0)
+
+    def __str__(self):
+        return self.nome
+
+    class Meta:
+        verbose_name = "Nota Cosplay"
+        verbose_name_plural = 'Notas Cosplays'
+        ordering = ['edicao', 'total_nota', 'nome', 'personagem']
 
 class Artistas(models.Model):
     nome = models.CharField(max_length=150)

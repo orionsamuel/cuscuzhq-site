@@ -1,12 +1,14 @@
-from inscricao.models import Edicao, Inscritos, Cospobre, Cosplay, Artistas
+from inscricao.models import Edicao, Inscritos, Cospobre, NotasCospobre
+from inscricao.models import Cosplay, NotasCosplay, Artistas
 from inscricao.forms import InscritosForm, CospobreForm, CosplayForm, ArtistaForm
-from inscricao.serializers import InscritosSerializers, CospobreSerializers, CosplaySerializers, EdicaoSerializers
+from inscricao.serializers import InscritosSerializers, CospobreSerializers, NotasCospobreSerializers
+from inscricao.serializers import CosplaySerializers, NotasCosplaySerializers, EdicaoSerializers
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect   
 from django.contrib.auth.decorators import login_required
 
 
@@ -29,11 +31,15 @@ def InscricaoCospobre(request):
     if request.method == 'POST':
         form = CospobreForm(request.POST or None, request.FILES)
         serializer = CospobreSerializers(data=request.POST)
+        serializerNotas = NotasCospobreSerializers(data=request.POST)
         if serializer.is_valid():
             if 'som' in request.FILES:
                 serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'], som=request.FILES['som'])
             else:
                 serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'])
+        if serializerNotas.is_valid():
+            serializerNotas.save(edicao=Edicao.objects.last(), nome=request.POST['nome'], 
+                                personagem=request.POST['personagem'])
             redirect('cospobre.html')
             context['success'] = True
     form = CospobreForm()
@@ -46,11 +52,15 @@ def InscricaoCosplay(request):
     if request.method == 'POST':
         form = CosplayForm(request.POST or None, request.FILES)
         serializer = CosplaySerializers(data=request.POST)
+        serializerNotas = NotasCosplaySerializers(data=request.POST)
         if serializer.is_valid():
             if 'som' in request.FILES:
                 serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'], som=request.FILES['som'])
             else:
                 serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'])
+        if serializerNotas.is_valid():
+            serializerNotas.save(edicao=Edicao.objects.last(), nome=request.POST['nome'], 
+                                personagem=request.POST['personagem'])
             redirect('cosplay.html')
             context['success'] = True
     form = CosplayForm()
@@ -189,6 +199,33 @@ class CospobreDetalhados(APIView):
         participante.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class AlterarNotasCospobre(APIView):
+    def get_object(self, edicao, pk):
+        try:
+            return NotasCospobre.objects.get(edicao__numero=edicao, pk=pk)
+        except NotasCospobre.DoesNotExist:
+            raise NotFound()
+
+    def get(self, request, edicao, pk):
+        notas = self.get_object(edicao, pk)
+        serializer = NotasCospobreSerializers(notas)
+        return Response(serializer.data)
+
+    def post(self, request, edicao):
+        serializer = NotasCospobreSerializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, edicao, pk):
+        notas = self.get_object(edicao, pk)
+        serializer = NotasCospobreSerializers(notas, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class CospobreVencedores(APIView):
     def get_object(self, edicao):
         try:
@@ -225,6 +262,26 @@ class CosplayDetalhados(APIView):
         participante = self.get_object(edicao, pk)
         participante.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class AlterarNotasCosplay(APIView):
+    def get_object(self, edicao, pk):
+        try:
+            return NotasCosplay.objects.get(edicao__numero=edicao, pk=pk)
+        except NotasCosplay.DoesNotExist:
+            raise NotFound()
+
+    def get(self, request, edicao, pk):
+        notas = self.get_object(edicao, pk)
+        serializer = NotasCosplaySerializers(notas)
+        return Response(serializer.data)
+
+    def put(self, request, edicao, pk):
+        notas = self.get_object(edicao, pk)
+        serializer = NotasCosplaySerializers(notas, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CosplayVencedores(APIView):
     def get_object(self, edicao):
