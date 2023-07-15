@@ -182,6 +182,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'cuscuzhq', 'media')
 MEDIA_URL = '/media/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 100
 
 AWS_ACCESS_KEY_ID = 'AKIARVGPJVYVBXSQMBNB'
