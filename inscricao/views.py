@@ -234,7 +234,7 @@ class CospobreVencedores(APIView):
             raise NotFound()
 
     def get(self, request, edicao):
-        participantes = NotasCospobre.objects.filter(edicao__numero=edicao).order_by('total_nota')
+        participantes = NotasCospobre.objects.filter(edicao__numero=edicao).order_by('-total_nota')
         serializer = NotasCospobreSerializers(participantes, many=True)
         return Response(serializer.data)
         
@@ -291,7 +291,7 @@ class CosplayVencedores(APIView):
             raise NotFound()
 
     def get(self, request, edicao):
-        participantes = NotasCosplay.objects.filter(edicao__numero=edicao).order_by('total_nota')
+        participantes = NotasCosplay.objects.filter(edicao__numero=edicao).order_by('-total_nota')
         serializer = NotasCosplaySerializers(participantes, many=True)
         return Response(serializer.data)
 
