@@ -201,7 +201,7 @@ class CospobreDetalhados(APIView):
         
 class NotasCospobre(APIView):
     def get(self, request, edicao):
-        notas = NotasCospobre.objects.get(edicao__numero=edicao)
+        notas = NotasCospobre.objects.filter(edicao__numero=edicao)
         serializer = NotasCospobreSerializers(notas, many=True)
         return Response(serializer.data)
 
@@ -303,7 +303,7 @@ class AlterarNotasCosplay(APIView):
 
 class NotasCosplay(APIView):
     def get(self, request, edicao):
-        notas = sNotasCosplay.objects.get(edicao__numero=edicao)
+        notas = NotasCosplay.objects.filter(edicao__numero=edicao)
         serializer = NotasCosplaySerializers(notas, many=True)
         return Response(serializer.data)
 
