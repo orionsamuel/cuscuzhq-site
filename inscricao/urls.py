@@ -17,7 +17,7 @@ urlpatterns = [
     path('v1/cospobre/<int:edicao>/', Cospobres.as_view()),
     path('v1/cospobre/<int:edicao>/<int:pk>/', CospobreDetalhados.as_view()),
     path('v1/notascospobre/<int:edicao>/<int:pk>/', AlterarNotasCospobre.as_view()),
-    path('v1/notascospobre/<int:edicao>/', NotasCospobre.as_view()),
+    #path('v1/notascospobre/<int:edicao>/', NotasCospobre.as_view()),
     path('v1/cospobre/vencedores/<int:edicao>/', CospobreVencedores.as_view()),
     path('v1/cosplay/<int:edicao>/', Cosplays.as_view()),
     path('v1/cosplay/<int:edicao>/<int:pk>/', CosplayDetalhados.as_view()),

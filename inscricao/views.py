@@ -199,23 +199,23 @@ class CospobreDetalhados(APIView):
         participante.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
         
-class NotasCospobre(APIView):
-    def get(self, request, edicao):
-        notas = NotasCospobre.objects.filter(edicao__numero=edicao)
-        serializer = NotasCospobreSerializers(notas, many=True)
-        return Response(serializer.data)
+# class NotasCospobre(APIView):
+#     def get(self, request, edicao):
+#         notas = NotasCospobre.objects.filter(edicao__numero=edicao)
+#         serializer = NotasCospobreSerializers(notas, many=True)
+#         return Response(serializer.data)
 
-    def post(self, request, edicao):
-        serializer = NotasCospobreSerializers(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def post(self, request, edicao):
+#         serializer = NotasCospobreSerializers(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, edicao):
-        notas = NotasCospobre.objects.filter(edicao__numero=edicao)
-        notas.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+#     def delete(self, request, edicao):
+#         notas = NotasCospobre.objects.filter(edicao__numero=edicao)
+#         notas.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class AlterarNotasCospobre(APIView):
     def get_object(self, edicao, pk):
