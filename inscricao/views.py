@@ -199,7 +199,7 @@ class CospobreDetalhados(APIView):
         participante.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class NotasCospobre(APIView):
+class NotasCospobres(APIView):
     def get(self, request, edicao):
         notas = NotasCospobre.objects.filter(edicao__numero=edicao)
         serializer = NotasCospobreSerializers(notas, many=True)
@@ -301,7 +301,7 @@ class AlterarNotasCosplay(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class NotasCosplay(APIView):
+class NotasCosplays(APIView):
     def get(self, request, edicao):
         notas = NotasCosplay.objects.filter(edicao__numero=edicao)
         serializer = NotasCosplaySerializers(notas, many=True)
