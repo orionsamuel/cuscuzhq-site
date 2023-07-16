@@ -200,8 +200,13 @@ class CospobreDetalhados(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
         
 class NotasCospobre(APIView):
+    def get_object(self, edicao):
+        try:
+            return NotasCospobre.objects.get(edicao__numero=edicao)
+        except NotasCospobre.DoesNotExist:
+            raise NotFound()
     def get(self, request, edicao):
-        notas = NotasCospobre.objects.filter(edicao__numero=edicao)
+        notas = self.get_object(edicao)
         serializer = NotasCospobreSerializers(notas, many=True)
         return Response(serializer.data)
 
@@ -302,8 +307,13 @@ class AlterarNotasCosplay(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class NotasCosplay(APIView):
+    def get_object(self, edicao):
+        try:
+            return NotasCosplay.objects.get(edicao__numero=edicao)
+        except NotasCosplay.DoesNotExist:
+            raise NotFound()
     def get(self, request, edicao):
-        notas = NotasCosplay.objects.filter(edicao__numero=edicao)
+        notas = self.get_object(edicao)
         serializer = NotasCosplaySerializers(notas, many=True)
         return Response(serializer.data)
 
