@@ -202,7 +202,7 @@ class CospobreDetalhados(APIView):
 class NotasCospobre(APIView):
     def get(self, request, edicao):
         notas = NotasCospobre.objects.filter(edicao__numero=edicao)
-        serializer = NotasCospobreSerializers(inscritos, many=True)
+        serializer = NotasCospobreSerializers(notas, many=True)
         return Response(serializer.data)
 
     def post(self, request, edicao):
