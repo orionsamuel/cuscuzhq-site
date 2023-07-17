@@ -84,7 +84,7 @@ class NotasCospobre(models.Model):
 class NotasCosplay(models.Model):
     nome = models.CharField(max_length=150)
     personagem = models.CharField(max_length=150, null=True)
-    edicao = models.FloatField(Edicao, on_delete=models.CASCADE, default="")
+    edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
     nota_1 = models.FloatField(null=True, default=0.0)
     nota_2 = models.FloatField(null=True, default=0.0)
     nota_3 = models.FloatField(null=True, default=0.0)
