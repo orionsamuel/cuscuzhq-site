@@ -68,10 +68,10 @@ class NotasCospobre(models.Model):
     nome = models.CharField(max_length=150)
     personagem = models.CharField(max_length=150, null=True)
     edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
-    nota_1 = models.IntegerField(null=True, default=0)
-    nota_2 = models.IntegerField(null=True, default=0)
-    nota_3 = models.IntegerField(null=True, default=0)
-    total_nota = models.IntegerField(null=True, default=0)
+    nota_1 = models.FloatField(null=True, default=0.0)
+    nota_2 = models.FloatField(null=True, default=0.0)
+    nota_3 = models.FloatField(null=True, default=0.0)
+    total_nota = models.FloatField(null=True, default=0.0)
 
     def __str__(self):
         return self.nome
@@ -84,11 +84,11 @@ class NotasCospobre(models.Model):
 class NotasCosplay(models.Model):
     nome = models.CharField(max_length=150)
     personagem = models.CharField(max_length=150, null=True)
-    edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
-    nota_1 = models.IntegerField(null=True, default=0)
-    nota_2 = models.IntegerField(null=True, default=0)
-    nota_3 = models.IntegerField(null=True, default=0)
-    total_nota = models.IntegerField(null=True, default=0)
+    edicao = models.FloatField(Edicao, on_delete=models.CASCADE, default="")
+    nota_1 = models.FloatField(null=True, default=0.0)
+    nota_2 = models.FloatField(null=True, default=0.0)
+    nota_3 = models.FloatField(null=True, default=0.0)
+    total_nota = models.FloatField(null=True, default=0.0)
 
     def __str__(self):
         return self.nome
