@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7*y4o%x#isv1)@4_(wj7*4kp-$&&d^=*0jl1io59_kcr1%j5$w'
+SECRET_KEY = 'SECRET_KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'False'
@@ -127,7 +127,7 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
     'default': dj_database_url.config(
-        default=os.getenv('postgres://ucfled1bg82doo:p96672da7a59397a1178391418c9d8cd132de95f2a7329867ad67ede502765911@ceqbglof0h8enj.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/ddfr94743if529')
+        default=os.getenv('DATABASE_URL')
     )
 }
 
@@ -192,9 +192,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 100
 
-AWS_ACCESS_KEY_ID = 'AKIAVVKH7VVUAQGCAQIV'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'bucketeer-86462f26-475e-4aa0-8357-40b6b9f4c6f2'
+AWS_ACCESS_KEY_ID = 'BUCKETEER_AWS_ACCESS_KEY_ID'
+AWS_SECRET_ACCESS_KEY = 'BUCKETEER_AWS_SECRET_ACCESS_KEY'
+AWS_STORAGE_BUCKET_NAME = 'BUCKETEER_BUCKET_NAME'
 
 AWS_FILE_OVERWRITE = True
 AWS_DEFAULT_ACL = None
