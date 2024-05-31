@@ -126,7 +126,9 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    'default': dj_database_url.config(
+        default=os.getenv('postgres://ucfled1bg82doo:p96672da7a59397a1178391418c9d8cd132de95f2a7329867ad67ede502765911@ceqbglof0h8enj.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/ddfr94743if529')
+    )
 }
 
 #DATABASES = {
