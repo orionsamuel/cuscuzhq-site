@@ -17,7 +17,8 @@ class Inscritos(models.Model):
     telefone = models.CharField(max_length=20)
     email = models.CharField(max_length=150)
     edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
-    presente = models.BooleanField(default=False)
+    presente1 = models.BooleanField(default=False)
+    presente2 = models.BooleanField(default=False)
     sorteado = models.BooleanField(default=False)
 
     def __str__(self):

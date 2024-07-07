@@ -2,7 +2,7 @@ from django.contrib import admin
 from inscricao.models import Inscritos, Edicao, Cospobre, Cosplay, Artistas, NotasCospobre, NotasCosplay
 
 class InscritosAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'telefone', 'email', 'edicao', 'presente']
+    list_display = ['nome', 'telefone', 'email', 'edicao', 'presente1', 'presente2']
     search_fields = ['nome', 'edicao']
 
 class CospobreAdmin(admin.ModelAdmin):
