@@ -346,14 +346,14 @@ class GetEdicao(APIView):
 @login_required(login_url='/admin/')
 def limparPresentes(request, edicao):
     context = {}
-    presentes = Inscritos.objects.filter(edicao__numero=edicao, presente=True)
+    presentes = Inscritos.objects.filter(edicao__numero=edicao, presente1=True)
     if request.method == 'POST':
         context['get'] = False
     else:
         context['get'] = True
         if len(presentes) > 0:
             context['sucess'] = True
-            presentes.update(presente=False)
+            presentes.update(presente1=False)
     context['sucess'] = False
     return render(request, 'zerar_participantes.html', context)
         

@@ -5,7 +5,7 @@ from rest_framework import serializers
 class InscritosSerializers(serializers.ModelSerializer):
     class Meta:
         model = Inscritos
-        fields = ['id', 'nome', 'telefone', 'email', 'edicao', 'presente', 'sorteado']
+        fields = ['id', 'nome', 'telefone', 'email', 'edicao', 'presente1', 'presente2' 'sorteado']
 
 class CospobreSerializers(serializers.ModelSerializer):
     class Meta:
