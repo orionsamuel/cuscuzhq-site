@@ -10,6 +10,7 @@ from rest_framework import status
 from rest_framework.exceptions import NotFound
 from django.shortcuts import render, redirect   
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 
 
 def Inscricao(request):
@@ -93,6 +94,18 @@ class BuscarParticipante(APIView):
         inscritos = Inscritos.objects.filter(nome__icontains=busca, edicao__numero=edicao)
         serializer = InscritosSerializers(inscritos, many=True)
         return Response(serializer.data)
+
+class DeletarParticipantes(APIView):
+    def delete(self, request, edicao):
+        duplicados = Inscritos.objects.values('evento', 'email', 'nome').annotate(count=Count('id')).filter(count__gt=1)
+        for duplicado in duplicados:
+            edicao = duplicado['edicao']
+            email = duplicado['email']
+            nome = duplicado['nome']
+            inscritos = Inscritos.objects.filter(edicao=edicao, email=email, nome=nome)
+            inscrito_a_manter = inscritos.first()
+            inscritos.exclude(id=inscrito_a_manter.pk).delete()
+        return Response({'status': 'success'})
 
 class Participantes(APIView):
     def get(self, request, edicao):
