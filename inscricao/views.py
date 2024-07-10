@@ -104,7 +104,7 @@ class DeletarParticipantesDuplicados(APIView):
     def delete(self, request, edicao):
         duplicados = Inscritos.objects.values('edicao__numero', 'email', 'nome').annotate(count=Count('id')).filter(count__gt=1)
         for duplicado in duplicados:
-            edicao = duplicado['edicao']
+            edicao = duplicado['edicao__numero']
             email = duplicado['email']
             nome = duplicado['nome']
             inscritos = Inscritos.objects.filter(edicao__numero=edicao, email=email, nome=nome)
