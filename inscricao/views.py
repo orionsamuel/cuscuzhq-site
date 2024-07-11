@@ -10,7 +10,8 @@ from rest_framework import status
 from rest_framework.exceptions import NotFound
 from django.shortcuts import render, redirect   
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
+from django.db.models import Count, Value
+from django.db.models.functions import Lower
 
 
 def Inscricao(request):
@@ -97,24 +98,34 @@ class BuscarParticipante(APIView):
 
 class DeletarParticipantesDuplicados(APIView):
     def get(self, request, edicao):
-        duplicados = Inscritos.objects.filter(edicao__numero=edicao).values('email', 'nome').annotate(count=Count('id')).filter(count__gt=1)
+        duplicados = Inscritos.objects.annotate(
+            lower_email=Lower('email'),
+            lower_nome=Lower('nome')
+        ).values('edicao__numero', 'lower_email', 'lower_nome').annotate(count=Count('id')).filter(edicao__numero=edicao, count__gt=1)
         
         duplicados_detalhes = []
         for duplicado in duplicados:
-            inscritos = Inscritos.objects.filter(edicao__numero=edicao, email=duplicado['email'], nome=duplicado['nome'])
-            duplicados_detalhes.extend(inscritos)
-        
+            email = duplicado['lower_email']
+            nome = duplicado['lower_nome']
+            inscritos = Inscritos.objects.filter(edicao__numero=edicao, email__iexact=email, nome__iexact=nome).order_by('id')
+            duplicados_detalhes.extend(inscritos[:-1])  # Exclui a última inscrição
+            
         serializer = InscritosSerializers(duplicados_detalhes, many=True)
         return Response(serializer.data)
     
     def delete(self, request, edicao):
-        duplicados = Inscritos.objects.filter(edicao__numero=edicao).values('email', 'nome').annotate(count=Count('id')).filter(count__gt=1)
+        duplicados = Inscritos.objects.annotate(
+            lower_email=Lower('email'),
+            lower_nome=Lower('nome')
+        ).values('edicao__numero', 'lower_email', 'lower_nome').annotate(count=Count('id')).filter(edicao__numero=edicao, count__gt=1)
+        
         for duplicado in duplicados:
-            email = duplicado['email']
-            nome = duplicado['nome']
-            inscritos = Inscritos.objects.filter(edicao__numero=edicao, email=email, nome=nome)
-            inscrito_a_manter = inscritos.first()
+            email = duplicado['lower_email']
+            nome = duplicado['lower_nome']
+            inscritos = Inscritos.objects.filter(edicao__numero=edicao, email__iexact=email, nome__iexact=nome).order_by('id')
+            inscrito_a_manter = inscritos.last()  # Mantém a última inscrição
             inscritos.exclude(id=inscrito_a_manter.pk).delete()
+            
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class Participantes(APIView):
