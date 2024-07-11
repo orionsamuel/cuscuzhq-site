@@ -97,12 +97,18 @@ class BuscarParticipante(APIView):
 
 class DeletarParticipantesDuplicados(APIView):
     def get(self, request, edicao):
-        duplicados = Inscritos.objects.values('edicao__numero', 'email', 'nome').annotate(count=Count('id')).filter(edicao__numero=edicao, count__gt=1)
-        serializer = InscritosSerializers(duplicados, many=True)
+        duplicados = Inscritos.objects.filter(edicao__numero=edicao).values('email', 'nome').annotate(count=Count('id')).filter(count__gt=1)
+        
+        duplicados_detalhes = []
+        for duplicado in duplicados:
+            inscritos = Inscritos.objects.filter(edicao__numero=edicao, email=duplicado['email'], nome=duplicado['nome'])
+            duplicados_detalhes.extend(inscritos)
+        
+        serializer = InscritosSerializers(duplicados_detalhes, many=True)
         return Response(serializer.data)
     
     def delete(self, request, edicao):
-        duplicados = Inscritos.objects.values('edicao__numero', 'email', 'nome').annotate(count=Count('id')).filter(edicao__numero=edicao, count__gt=1)
+        duplicados = Inscritos.objects.filter(edicao__numero=edicao).values('email', 'nome').annotate(count=Count('id')).filter(count__gt=1)
         for duplicado in duplicados:
             email = duplicado['email']
             nome = duplicado['nome']
