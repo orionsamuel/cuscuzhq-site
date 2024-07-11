@@ -108,7 +108,7 @@ class DeletarParticipantesDuplicados(APIView):
             email = duplicado['lower_email']
             nome = duplicado['lower_nome']
             inscritos = Inscritos.objects.filter(edicao__numero=edicao, email__iexact=email, nome__iexact=nome).order_by('id')
-            duplicados_detalhes.extend(inscritos[:-1])  # Exclui a última inscrição
+            duplicados_detalhes.extend(inscritos[:inscritos.count()-1])  # Exclui a última inscrição
             
         serializer = InscritosSerializers(duplicados_detalhes, many=True)
         return Response(serializer.data)
