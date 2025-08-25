@@ -81,7 +81,7 @@ def InscricaoArtista(request):
             artista = form.save(commit=False)
             artista.edicao = edicao=Edicao.objects.last()
             artista.total = total
-            artista.fliq = True
+            artista.fliq = False
             artista.save()
             redirect('artistas.html')
             context['success'] = True
