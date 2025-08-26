@@ -206,11 +206,22 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 100
 # AWS_DEFAULT_ACL = None
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-SUPABASE_URL = os.getenv('SUPABASE_URL')
-SUPABASE_KEY = os.getenv('SUPABASE_KEY')
+# SUPABASE_URL = os.getenv('SUPABASE_URL')
+# SUPABASE_KEY = os.getenv('SUPABASE_KEY')
+# SUPABASE_BUCKET_NAME = os.getenv('SUPABASE_BUCKET_NAME', 'default-bucket')
+
+# DEFAULT_FILE_STORAGE = "utils.supabase_storage.SupabaseStorage"
+
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 SUPABASE_BUCKET_NAME = os.getenv('SUPABASE_BUCKET_NAME', 'default-bucket')
 
-DEFAULT_FILE_STORAGE = "utils.supabase_storage.SupabaseStorage"
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+AWS_ACCESS_KEY_ID = "supabase"
+AWS_SECRET_ACCESS_KEY = SUPABASE_KEY
+AWS_STORAGE_BUCKET_NAME = SUPABASE_BUCKET_NAME
+AWS_S3_ENDPOINT_URL = f"{SUPABASE_URL}/storage/v1"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
