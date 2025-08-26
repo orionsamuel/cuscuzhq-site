@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'bootstrapform',
     "django_bootstrap5",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -191,20 +192,20 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 100
 
-SUPABASE_BUCKET_NAME = os.environ.get("SUPABASE_BUCKET_NAME")
-SUPABASE_URL = os.environ.get("SUPABASE_URL")
-SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
+# SUPABASE_BUCKET_NAME = os.environ.get("SUPABASE_BUCKET_NAME")
+# SUPABASE_URL = os.environ.get("SUPABASE_URL")
+# SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 
-if not SUPABASE_BUCKET_NAME or not SUPABASE_URL or not SUPABASE_KEY:
-    raise Exception("Variáveis de ambiente do Supabase não definidas!")
+# if not SUPABASE_BUCKET_NAME or not SUPABASE_URL or not SUPABASE_KEY:
+#     raise Exception("Variáveis de ambiente do Supabase não definidas!")
 
+AWS_ACCESS_KEY_ID = os.getenv("FILEBASE_ACCESS_KEY")
+AWS_SECRET_ACCESS_KEY = os.getenv("FILEBASE_SECRET_KEY")
+AWS_STORAGE_BUCKET_NAME = "cuscuzhq"
+AWS_S3_ENDPOINT_URL = "https://s3.filebase.com"
+
+# Onde salvar os uploads
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-
-AWS_ACCESS_KEY_ID = "anystring"  # Supabase ignora, mas boto3 precisa
-AWS_SECRET_ACCESS_KEY = SUPABASE_KEY
-AWS_STORAGE_BUCKET_NAME = SUPABASE_BUCKET_NAME
-AWS_S3_ENDPOINT_URL = f"{SUPABASE_URL}/storage/v1"
-AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
 # DEFAULT_FILE_STORAGE = "utils.supabase_storage.SupabaseStorage"
 
