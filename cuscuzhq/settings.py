@@ -69,15 +69,6 @@ MIDDLEWARE = [
 ALLOWED_HOSTS=['*']
 CORS_ORIGIN_ALLOW_ALL = True
 
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:8100",
-#     "http://localhost:8200",
-#     "http://localhost",
-#     "http://localhost:8080",
-#     "http://localhost:8000",
-#     "http://127.0.0.1:9000",
-# ]
-
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = [
@@ -183,21 +174,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'cuscuzhq', 'media')
-MEDIA_URL = '/media/'
+#MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'inscricao', 'static')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 100
-
-# SUPABASE_BUCKET_NAME = os.environ.get("SUPABASE_BUCKET_NAME")
-# SUPABASE_URL = os.environ.get("SUPABASE_URL")
-# SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
-
-# if not SUPABASE_BUCKET_NAME or not SUPABASE_URL or not SUPABASE_KEY:
-#     raise Exception("Variáveis de ambiente do Supabase não definidas!")
 
 AWS_ACCESS_KEY_ID = os.getenv("FILEBASE_ACCESS_KEY")
 AWS_SECRET_ACCESS_KEY = os.getenv("FILEBASE_SECRET_KEY")
@@ -207,11 +190,8 @@ AWS_S3_ENDPOINT_URL = "https://s3.filebase.com"
 # Onde salvar os uploads
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
-# DEFAULT_FILE_STORAGE = "utils.supabase_storage.SupabaseStorage"
-
-# SUPABASE_URL = os.environ.get("SUPABASE_URL")
-# SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
-# SUPABASE_BUCKET = os.environ.get("SUPABASE_BUCKET")
+MEDIA_ROOT = os.path.join(BASE_DIR, 'cuscuzhq', 'media')
+MEDIA_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.filebase.com/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
