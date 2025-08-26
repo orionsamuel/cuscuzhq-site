@@ -204,7 +204,7 @@ AWS_ACCESS_KEY_ID = "anystring"  # Supabase ignora, mas boto3 precisa
 AWS_SECRET_ACCESS_KEY = SUPABASE_KEY
 AWS_STORAGE_BUCKET_NAME = SUPABASE_BUCKET_NAME
 AWS_S3_ENDPOINT_URL = f"{SUPABASE_URL}/storage/v1"
-AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}"
+AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
 # DEFAULT_FILE_STORAGE = "utils.supabase_storage.SupabaseStorage"
 
