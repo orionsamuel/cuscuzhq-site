@@ -192,7 +192,7 @@ AWS_QUERYSTRING_AUTH = False
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'cuscuzhq', 'media')
-MEDIA_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.filebase.com/"
+MEDIA_URL = f"https://nhgctpefxeahwvnujlox.supabase.co/storage/v1/object/public/{AWS_STORAGE_BUCKET_NAME}/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
