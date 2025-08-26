@@ -191,25 +191,26 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 100
 
-# AWS_ACCESS_KEY_ID = os.getenv('BUCKETEER_AWS_ACCESS_KEY_ID')
-# AWS_SECRET_ACCESS_KEY = os.getenv('BUCKETEER_AWS_SECRET_ACCESS_KEY')
-# AWS_STORAGE_BUCKET_NAME = os.getenv('BUCKETEER_BUCKET_NAME')
+SUPABASE_BUCKET_NAME = os.environ.get("SUPABASE_BUCKET_NAME")
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
 
-# AWS_FILE_OVERWRITE = True
-# AWS_DEFAULT_ACL = None
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+if not SUPABASE_BUCKET_NAME or not SUPABASE_URL or not SUPABASE_KEY:
+    raise Exception("Variáveis de ambiente do Supabase não definidas!")
 
-# SUPABASE_URL = os.getenv('SUPABASE_URL')
-# SUPABASE_KEY = os.getenv('SUPABASE_KEY')
-# SUPABASE_BUCKET_NAME = os.getenv('SUPABASE_BUCKET_NAME', 'default-bucket')
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+AWS_ACCESS_KEY_ID = "anystring"  # Supabase ignora, mas boto3 precisa
+AWS_SECRET_ACCESS_KEY = SUPABASE_KEY
+AWS_STORAGE_BUCKET_NAME = SUPABASE_BUCKET_NAME
+AWS_S3_ENDPOINT_URL = f"{SUPABASE_URL}/storage/v1"
+AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}"
 
 # DEFAULT_FILE_STORAGE = "utils.supabase_storage.SupabaseStorage"
 
-DEFAULT_FILE_STORAGE = "utils.supabase_storage.SupabaseStorage"
-
-SUPABASE_URL = os.environ.get("SUPABASE_URL")
-SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
-SUPABASE_BUCKET = os.environ.get("SUPABASE_BUCKET")
+# SUPABASE_URL = os.environ.get("SUPABASE_URL")
+# SUPABASE_KEY = os.environ.get("SUPABASE_KEY")
+# SUPABASE_BUCKET = os.environ.get("SUPABASE_BUCKET")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
