@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")  # usa variável de 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1,localhost,https://cuscuzhq.herokuapp.com/, cuscuzhq.render.com").split(",")
+ALLOWED_HOSTS = os.environ.get("cuscuzhq.alwaysdata.net", "127.0.0.1", "localhost").split(",")
 
 # Application definition
 
