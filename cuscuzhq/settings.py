@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'bootstrapform',
+    "django_bootstrap5",
 ]
 
 MIDDLEWARE = [
