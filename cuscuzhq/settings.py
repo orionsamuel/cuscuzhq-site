@@ -186,7 +186,7 @@ if os.environ.get("SUPABASE_ACCESS_KEY"):  # Produção
             "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         },
         "default": {
-            "BACKEND": "storages.backends.s3boto3.S3Storage",
+            "BACKEND": "cuscuzhq.storage_backends.PublicMediaStorage",
             "OPTIONS": {
                 "access_key": os.environ.get("SUPABASE_ACCESS_KEY"),
                 "secret_key": os.environ.get("SUPABASE_SECRET_KEY"),
