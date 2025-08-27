@@ -186,19 +186,22 @@ if os.environ.get("SUPABASE_ACCESS_KEY"):  # Produção
             "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         },
         "default": {
-            "BACKEND": "cuscuzhq.storage_backends.PublicMediaStorage",
+            "BACKEND": "storages.backends.s3.S3Storage",
             "OPTIONS": {
                 "access_key": os.environ.get("SUPABASE_ACCESS_KEY"),
                 "secret_key": os.environ.get("SUPABASE_SECRET_KEY"),
                 "bucket_name": os.environ.get("SUPABASE_BUCKET_NAME"),
                 "region_name": os.environ.get("SUPABASE_REGION_NAME"),
                 "endpoint_url": os.environ.get("SUPABASE_ENDPOINT"),
+                "signature_version": "s3v4",
+                "file_overwrite": False,
+                "default_acl": "public-read",
+                "querystring_auth": False,
             },
         },
     }
     STATICFILES_STORAGE = "storages.backends.s3.S3Storage"
-    AWS_QUERYSTRING_AUTH = False
-    MEDIA_URL = f"https://nhgctpefxeahwvnujlox.supabase.co/storage/v1/object/public/{os.environ.get('SUPABASE_BUCKET_NAME')}/"
+    MEDIA_URL = f"https://{os.environ.get('SUPABASE_PROJECT_ID')}.supabase.co/storage/v1/object/public/{os.environ.get('SUPABASE_BUCKET_NAME')}/"
 else:
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, 'cuscuzhq', 'media')
