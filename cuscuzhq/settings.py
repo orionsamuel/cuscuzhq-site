@@ -200,8 +200,8 @@ if os.environ.get("SUPABASE_ACCESS_KEY"):  # Produção
             },
         },
     }
-    STATICFILES_STORAGE = "storages.backends.s3.S3Storage"
-    MEDIA_URL = f"https://{os.environ.get('SUPABASE_PROJECT_ID')}.supabase.co/storage/v1/object/public/{os.environ.get('SUPABASE_BUCKET_NAME')}/"
+    #STATICFILES_STORAGE = "storages.backends.s3.S3Storage"
+    #MEDIA_URL = f"https://{os.environ.get('SUPABASE_PROJECT_ID')}.supabase.co/storage/v1/object/public/{os.environ.get('SUPABASE_BUCKET_NAME')}/"
 else:
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, 'cuscuzhq', 'media')
