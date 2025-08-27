@@ -174,25 +174,31 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-#MEDIA_URL = '/media/'
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'inscricao', 'static')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 100
 
-AWS_ACCESS_KEY_ID = os.getenv("SUPABASE_ACCESS_KEY")
-AWS_SECRET_ACCESS_KEY = os.getenv("SUPABASE_SECRET_KEY")
-AWS_STORAGE_BUCKET_NAME = os.getenv("SUPABASE_BUCKET_NAME")
-AWS_S3_ENDPOINT_URL = os.getenv("SUPABASE_ENDPOINT")
-AWS_QUERYSTRING_AUTH = False
-
-# Onde salvar os uploads
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'cuscuzhq', 'media')
-MEDIA_URL = f"https://nhgctpefxeahwvnujlox.supabase.co/storage/v1/object/public/{AWS_STORAGE_BUCKET_NAME}/"
+if os.environ.get("SUPABASE_ACCESS_KEY"):  # Produção
+    STORAGES = {
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "access_key": os.environ.get("SUPABASE_ACCESS_KEY"),
+            "secret_key": os.environ.get("SUPABASE_SECRET_KEY"),
+            "bucket_name": os.environ.get("SUPABASE_BUCKET_NAME"),
+            "region_name": os.environ.get("SUPABASE_REGION_NAME"),
+            "endpoint_url": os.environ.get("SUPABASE_ENDPOINT"),
+        },
+    },
+}
+else:
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'cuscuzhq', 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
