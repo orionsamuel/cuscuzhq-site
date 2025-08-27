@@ -182,23 +182,26 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 100
 
 if os.environ.get("SUPABASE_ACCESS_KEY"):  # Produção
     STORAGES = {
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    },
-    "default": {
-        "BACKEND": "storages.backends.s3.S3Storage",
-        "OPTIONS": {
-            "access_key": os.environ.get("SUPABASE_ACCESS_KEY"),
-            "secret_key": os.environ.get("SUPABASE_SECRET_KEY"),
-            "bucket_name": os.environ.get("SUPABASE_BUCKET_NAME"),
-            "region_name": os.environ.get("SUPABASE_REGION_NAME"),
-            "endpoint_url": os.environ.get("SUPABASE_ENDPOINT"),
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         },
-    },
-}
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                "access_key": os.environ.get("SUPABASE_ACCESS_KEY"),
+                "secret_key": os.environ.get("SUPABASE_SECRET_KEY"),
+                "bucket_name": os.environ.get("SUPABASE_BUCKET_NAME"),
+                "region_name": os.environ.get("SUPABASE_REGION_NAME"),
+                "endpoint_url": os.environ.get("SUPABASE_ENDPOINT"),
+            },
+        },
+    }
+
+    MEDIA_URL = f"https://{os.environ.get('SUPABASE_ENDPOINT').split('//')[1].split('/')[0]}/storage/v1/object/public/{os.environ.get('SUPABASE_BUCKET_NAME')}/"
 else:
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, 'cuscuzhq', 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
