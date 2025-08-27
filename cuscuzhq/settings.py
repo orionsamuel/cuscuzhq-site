@@ -196,8 +196,9 @@ if os.environ.get("SUPABASE_ACCESS_KEY"):  # Produção
             },
         },
     }
-
-    MEDIA_URL = f"https://{os.environ.get('SUPABASE_ENDPOINT').split('//')[1].split('/')[0]}/storage/v1/object/public/{os.environ.get('SUPABASE_BUCKET_NAME')}/"
+    STATICFILES_STORAGE = "storages.backends.s3.S3Storage"
+    AWS_QUERYSTRING_AUTH = False
+    MEDIA_URL = f"https://nhgctpefxeahwvnujlox.supabase.co/storage/v1/object/public/{os.environ.get('SUPABASE_BUCKET_NAME')}/"
 else:
     MEDIA_URL = "/media/"
     MEDIA_ROOT = os.path.join(BASE_DIR, 'cuscuzhq', 'media')
