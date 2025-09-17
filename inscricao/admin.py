@@ -11,7 +11,7 @@ class CospobreAdmin(admin.ModelAdmin):
     search_fields = ['nome', 'edicao']
 
 class NotasCospobreAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'personagem', 'edicao', 'nota_1', 'nota_2', 'nota_3', 'total_nota']
+    list_display = ['nome', 'personagem', 'edicao', 'cospobreId', 'nota_1', 'nota_2', 'nota_3', 'total_nota']
     search_fields = ['nome', 'personagem', 'edicao']
     
 class CosplayAdmin(admin.ModelAdmin):
@@ -20,7 +20,7 @@ class CosplayAdmin(admin.ModelAdmin):
     search_fields = ['nome', 'edicao']
 
 class NotasCosplayAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'personagem', 'edicao', 'nota_1', 'nota_2', 'nota_3', 'total_nota']
+    list_display = ['nome', 'personagem', 'edicao', 'cosplayId', 'nota_1', 'nota_2', 'nota_3', 'total_nota']
     search_fields = ['nome', 'personagem', 'edicao']
 
 class ArtistasAdmin(admin.ModelAdmin):

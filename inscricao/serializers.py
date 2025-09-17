@@ -27,9 +27,9 @@ class EdicaoSerializers(serializers.ModelSerializer):
 class NotasCospobreSerializers(serializers.ModelSerializer):
     class Meta:
         model = NotasCospobre
-        fields = ['id', 'nome', 'personagem', 'edicao', 'nota_1', 'nota_2', 'nota_3', 'total_nota']
+        fields = ['id', 'nome', 'personagem', 'edicao', 'cospobreId', 'nota_1', 'nota_2', 'nota_3', 'total_nota']
 
 class NotasCosplaySerializers(serializers.ModelSerializer):
     class Meta:
         model = NotasCosplay
-        fields = ['id', 'nome', 'personagem', 'edicao', 'nota_1', 'nota_2', 'nota_3', 'total_nota']
+        fields = ['id', 'nome', 'personagem', 'edicao', 'cosplayId', 'nota_1', 'nota_2', 'nota_3', 'total_nota']
