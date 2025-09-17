@@ -69,6 +69,7 @@ class NotasCospobre(models.Model):
     nome = models.CharField(max_length=150)
     personagem = models.CharField(max_length=150, null=True)
     edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
+    cospobreId = models.ForeignKey(Cospobre, on_delete=models.CASCADE, default="")
     nota_1 = models.FloatField(null=True, default=0.0)
     nota_2 = models.FloatField(null=True, default=0.0)
     nota_3 = models.FloatField(null=True, default=0.0)
@@ -80,12 +81,13 @@ class NotasCospobre(models.Model):
     class Meta:
         verbose_name = "Nota Cospobre"
         verbose_name_plural = 'Notas Cospobres'
-        ordering = ['edicao', 'total_nota', 'nome', 'personagem']
+        ordering = ['edicao', 'total_nota', 'nome', 'personagem', 'cospobreId']
 
 class NotasCosplay(models.Model):
     nome = models.CharField(max_length=150)
     personagem = models.CharField(max_length=150, null=True)
     edicao = models.ForeignKey(Edicao, on_delete=models.CASCADE, default="")
+    cosplayId = models.ForeignKey(Cosplay, on_delete=models.CASCADE, default="")
     nota_1 = models.FloatField(null=True, default=0.0)
     nota_2 = models.FloatField(null=True, default=0.0)
     nota_3 = models.FloatField(null=True, default=0.0)
@@ -97,7 +99,7 @@ class NotasCosplay(models.Model):
     class Meta:
         verbose_name = "Nota Cosplay"
         verbose_name_plural = 'Notas Cosplays'
-        ordering = ['edicao', 'total_nota', 'nome', 'personagem']
+        ordering = ['edicao', 'total_nota', 'nome', 'personagem', 'cosplayId']
 
 class Artistas(models.Model):
     nome = models.CharField(max_length=150)

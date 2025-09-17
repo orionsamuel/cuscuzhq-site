@@ -36,12 +36,12 @@ def InscricaoCospobre(request):
         serializerNotas = NotasCospobreSerializers(data=request.POST)
         if serializer.is_valid():
             if 'som' in request.FILES:
-                serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'], som=request.FILES['som'])
+                cospobre = serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'], som=request.FILES['som'])
             else:
-                serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'])
+                cospobre = serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'])
         if serializerNotas.is_valid():
             serializerNotas.save(edicao=Edicao.objects.last(), nome=request.POST['nome'], 
-                                personagem=request.POST['personagem'])
+                                personagem=request.POST['personagem'], cospobreId=cospobre)
             redirect('cospobre.html')
             context['success'] = True
     form = CospobreForm()
@@ -57,12 +57,12 @@ def InscricaoCosplay(request):
         serializerNotas = NotasCosplaySerializers(data=request.POST)
         if serializer.is_valid():
             if 'som' in request.FILES:
-                serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'], som=request.FILES['som'])
+                cosplay = serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'], som=request.FILES['som'])
             else:
-                serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'])
+                cosplay = serializer.save(edicao=Edicao.objects.last(), imagem=request.FILES['imagem'])
         if serializerNotas.is_valid():
             serializerNotas.save(edicao=Edicao.objects.last(), nome=request.POST['nome'], 
-                                personagem=request.POST['personagem'])
+                                personagem=request.POST['personagem'], cosplayId = cosplay)
             redirect('cosplay.html')
             context['success'] = True
     form = CosplayForm()
